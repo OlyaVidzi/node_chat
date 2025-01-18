@@ -7,13 +7,13 @@ import Chat from './components/chat/chat';
 const socket = io('http://localhost:5000');
 
 const App = () => {
-    return (
-        <Routes>
-            <Route path="/" element={<Home socket={socket} />} />
-            <Route path="/rooms" element={<Rooms socket={socket} />} />
-            <Route path="/room/:roomId" element={<Chat socket={socket} />} />
-        </Routes>
-    );
+  return (
+    <Routes>
+      <Route path="/" element={<Home socket={socket} />} />
+      <Route path="/rooms" element={<Rooms socket={socket} />} />
+      <Route path="/room/:roomId" element={<Chat socket={socket} />} />
+    </Routes>
+  );
 };
 
 export default App;
