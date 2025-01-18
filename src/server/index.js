@@ -137,8 +137,18 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', () => {
     delete users[socket.id];
-    console.log(users);
+
+    for (let roomId in rooms) {
+      if (rooms[roomId].users[socket.id]) {
+        delete rooms[roomId].users[socket.id];
+
+        io.to(roomId).emit('userList', rooms[roomId].users);
+      }
+    }
+
+    console.log(`Користувач відключився: ${socket.id}`);
   });
+
 });
 
 server.listen(5000, () => {
